@@ -20,4 +20,4 @@ Para correr el proyecto seguir los siguientes comandos:
 
 Y listo
 
-
+La aplicacion enun servidor web puede ser consultada en la siguiente direccion http://nulldainar.000webhostapp.com/
