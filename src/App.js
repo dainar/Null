@@ -6,10 +6,10 @@ import UserTable from './tables/UserTable';
 const App = () => {
 	
 	const usersData = [
-		{ id: 1, nombre: 'Gorge', email: 'george@mail.com', fecha: '01/06/2018', domicilio: 'https://www.google.com/maps/search/?api=1&query=Selva+45%2C+insugentes+cuilcuilco' },
-		{ id: 2, nombre: 'Raul', email: 'raul@mail.com', fecha: '01/06/2018', domicilio: 'https://www.google.com/maps/search/?api=1&query=Selva+45%2C+insugentes+cuilcuilco' },
-		{ id: 3, nombre: 'Sergio', email: 'serch@mail.com', fecha: '01/06/2018', domicilio: 'https://www.google.com/maps/search/?api=1&query=Selva+45%2C+insugentes+cuilcuilco' },
-	];
+		{ id: 1, nombre: 'Tania', email: 'agkorn@kmail.com' , fecha:'01/01/2018', direccion:'s'},
+		{ id: 2, nombre: 'Craig', email: 'agkorn@kmail.com' , fecha:'01/01/2018', direccion:'s' },
+		{ id: 3, nombre: 'Ben', email: 'agkorn@kmail.com' , fecha:'01/01/2018', direccion:'s'},
+]
 
 	const initialFormState = { id: null, nombre: '', email: '', fecha:'', domicilio:'' };
 
@@ -17,14 +17,33 @@ const App = () => {
 	const [ currentUser, setCurrentUser ] = useState(initialFormState);
 	const [ editing, setEditing ] = useState(false);
 
+  
+
 	const addUser = user => {
-		user.id = users.length + 1
-		setUsers([ ...users, user ])
+		user.id = Object.keys(users).length + 1;
+		
+	
+		
+		setUsers([...users, user]);
+		window.localStorage.setItem("myData",JSON.stringify([...users, user]));
+	
 	};
 
 	const deleteUser = id => {
 		setEditing(false)
-
+		var duser = JSON.parse(localStorage["myData"]);
+		console.log(duser);
+  for (var i = 0; i < duser.length; i++) {
+     if(duser[i].id == id){
+	const mydel = duser.splice(i,1);
+	console.log(mydel);
+	var myData = JSON.stringify(duser);
+	console.log(duser);
+	window.localStorage.setItem("myData", myData);
+     }
+  }
+  
+ 
 		setUsers(users.filter(user => user.id !== id))
 	};
 

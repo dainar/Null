@@ -1,6 +1,35 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
+import moment from 'moment';
 
-const UserTable = props => (
+
+
+
+const UserTable = props => {
+
+  const [ userss, setUserss ] = useState({});
+  useEffect(() => {
+    console.log(props.users);
+    const usersss = window.localStorage.getItem('myData');
+    
+      const myObj= JSON.parse(usersss);
+      
+      console.log(myObj);
+     if(myObj == null){setUserss(props.users)}else{
+      setUserss(myObj);
+    
+    }
+    
+    
+    
+    
+    }, [props]);
+ 
+  
+ 
+
+  
+  
+  return (
   <table>
     <thead>
       <tr>
@@ -12,12 +41,12 @@ const UserTable = props => (
       </tr>
     </thead>
     <tbody>
-      {props.users.length > 0 ? (
-        props.users.map(user => (
+      {userss.length > 0 ? (
+        userss.map(user => (
           <tr key={user.id}>
             <td>{user.nombre}</td>
             <td>{user.email}</td>
-            <td>{user.fecha}</td>
+            <td>{moment(user.fecha).format("DD/MM/YYYY")}</td>
             <td><a href={user.domicilio}>Direccion</a></td>
             <td>
               <button
@@ -44,6 +73,8 @@ const UserTable = props => (
       )}
     </tbody>
   </table>
-)
+
+);
+      }
 
 export default UserTable

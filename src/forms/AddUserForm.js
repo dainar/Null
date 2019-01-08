@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 
 const AddUserForm = props => {
-	const initialFormState = { id: null, nombre: '', email: '', fecha:'', domicilio:'' }
+	const initialFormState = { id: null, nombre: '', email: '', fecha: new Date(), domicilio:'' }
 	const [ user, setUser ] = useState(initialFormState)
 	const [invalid, setValid] = useState(false);
 	const [vacio, setVacio] = useState(false);
